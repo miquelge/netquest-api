@@ -1,14 +1,11 @@
+import uuid
 
 from pydantic import AnyUrl
-from app.database.baseClass import Base
 from sqlalchemy import Column, String
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import Column, Integer, String
-from sqlalchemy_utils.types.url import URLType
-from sqlalchemy.ext.declarative import declarative_base
-import uuid
-import logging as log
+
+from app.database.baseClass import Base
+
 
 class Record(Base):
     id = Column(UUID, primary_key=True)
@@ -16,7 +13,7 @@ class Record(Base):
     img = Column(String)
     __allow_unmapped__ = True
 
-    def __init__(self, title, img, id = None):
+    def __init__(self, title, img, id=None):
         if id is None:
             self.id = uuid.uuid4()
         else:

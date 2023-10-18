@@ -4,6 +4,7 @@ import traceback
 from fastapi import Request
 from fastapi.responses import JSONResponse
 from starlette.middleware.base import BaseHTTPMiddleware
+
 from app.utils.exceptions.customException import CustomException
 from app.utils.exceptions.missingAuthenticationException import \
     MissingAuthenticationException
@@ -11,6 +12,7 @@ from app.utils.exceptions.unauthorizedException import UnauthorizedException
 
 TOKEN_PREFIX = 'Bearer '
 VALID_TOKEN = "ValidToken"
+
 
 class Middleware(BaseHTTPMiddleware):
     def __init__(self, app):
@@ -36,11 +38,11 @@ class Middleware(BaseHTTPMiddleware):
             )
 
     def authorize(self, request: Request):
-        # Check token exists and it's format        
+        # Check token exists and it's format
         authToken = request.headers.get('Authorization')
         if authToken is None or not authToken.startswith(TOKEN_PREFIX):
             raise MissingAuthenticationException()
-        
+
         # Check if token is valid (mocked)
         authToken = authToken.removeprefix(TOKEN_PREFIX)
         if authToken != VALID_TOKEN:

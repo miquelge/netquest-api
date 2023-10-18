@@ -1,11 +1,11 @@
-import logging as log
+
+from fastapi import FastAPI
 
 from app.database.init_db import init_db
-from fastapi import FastAPI
 from app.middleware.middleware import Middleware
 from app.routers.records import recordsRouter
 
-# Initialize db
+
 init_db()
 
 # Populate db
@@ -18,4 +18,3 @@ init_db()
 app = FastAPI()
 app.add_middleware(Middleware)
 app.include_router(recordsRouter)
-

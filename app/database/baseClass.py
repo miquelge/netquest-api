@@ -1,8 +1,4 @@
-from typing import Any
-from uuid import UUID
 from sqlalchemy.ext.declarative import as_declarative, declared_attr
-
-from sqlalchemy import UUID, Column
 
 
 @as_declarative()
