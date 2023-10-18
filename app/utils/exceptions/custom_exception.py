@@ -1,13 +1,17 @@
 from abc import abstractmethod
 
-from fastapi.responses import JSONResponse
+import starlette.status as status_code
+from fastapi.responses import PlainTextResponse
 
 
 class CustomException(Exception):
 
     @abstractmethod
     def handle_and_return(self):
-        return JSONResponse(status_code=500, content="Error")
+        return PlainTextResponse(
+            status_code=status_code.HTTP_500_INTERNAL_SERVER_ERROR,
+            content="Error"
+        )
 
     def __init__(self, message=None, exception=None):
         if message is not None:

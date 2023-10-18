@@ -4,7 +4,7 @@ from pydantic import AnyUrl
 from sqlalchemy import Column, String
 from sqlalchemy.dialects.postgresql import UUID
 
-from app.database.baseClass import Base
+from app.database.base_class import Base
 
 
 class Record(Base):

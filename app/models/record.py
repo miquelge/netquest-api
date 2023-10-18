@@ -1,15 +1,12 @@
 from typing import Optional
 from uuid import UUID
 
-from pydantic import AnyUrl, BaseModel
+from pydantic import AnyUrl, BaseModel, ConfigDict
 
 
 class RecordCreateModel(BaseModel):
     title: str
     img: AnyUrl
-
-    class Config:
-        from_attributes = True
 
 
 class RecordPatchModel(BaseModel):
@@ -22,8 +19,7 @@ class RecordModel(BaseModel):
     title: Optional[str] = None
     img: Optional[AnyUrl] = None
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class GetAllRecordsResultModel(BaseModel):

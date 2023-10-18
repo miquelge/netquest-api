@@ -3,7 +3,7 @@ from uuid import UUID
 from fastapi import APIRouter
 
 import app.models.record as Models
-from app.services.records.recordsService import recordsService
+from app.services.records import recordsService
 
 
 recordsRouter = APIRouter(prefix='/records')

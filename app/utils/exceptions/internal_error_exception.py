@@ -1,8 +1,9 @@
 import traceback
 
+import starlette.status as status_code
 from fastapi.responses import JSONResponse
 
-from app.utils.exceptions.customException import CustomException
+from app.utils.exceptions.custom_exception import CustomException
 
 
 class InternalErrorException(CustomException):
@@ -15,4 +16,7 @@ class InternalErrorException(CustomException):
         }
         if self.exception is not None:
             content["exception"] = str(self.exception)
-        return JSONResponse(status_code=500, content=content)
+        return JSONResponse(
+            status_code=status_code.HTTP_500_INTERNAL_SERVER_ERROR,
+            content=content
+        )

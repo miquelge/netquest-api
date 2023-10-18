@@ -5,10 +5,10 @@ from fastapi import Request
 from starlette.responses import JSONResponse
 
 from app.middleware.middleware import Middleware
-from app.utils.exceptions.customException import CustomException
-from app.utils.exceptions.missingAuthenticationException import \
+from app.utils.exceptions.custom_exception import CustomException
+from app.utils.exceptions.missing_authentication_exception import \
     MissingAuthenticationException
-from app.utils.exceptions.unauthorizedException import UnauthorizedException
+from app.utils.exceptions.unauthorized_exception import UnauthorizedException
 
 
 class MockApp:
@@ -54,9 +54,9 @@ async def test_middleware_dispatch_custom_exception(middleware):
         raise CustomException("Custom Error")
 
     response = await middleware.dispatch(validRequest, mock_next)
-    print(response.body)
+
     assert response.status_code == 500
-    assert response.body.decode('utf-8').strip('"') == "Error"
+    assert response.body.decode('utf-8') == "Error"
 
 
 @pytest.mark.asyncio
